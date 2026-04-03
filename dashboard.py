@@ -38,8 +38,10 @@ with tab1:
     else:
         col1, col2, col3 = st.columns(3)
         col1.metric("Cities Tracked", df["city"].nunique())
-        col2.metric("Avg Temperature (°C)", f"{df["temperature"].mean():.1f}")
-        col3.metric("Avg Humidity (%)", f"{df["humidity"].mean():.0f}")
+        avg_temp = df["temperature"].mean()
+        col2.metric("Avg Temperature (°C)", f"{avg_temp:.1f}")
+        avg_humidity = df["humidity"].mean()
+        col3.metric("Avg Humidity (%)", f"{avg_humidity:.0f}")
 
         fig = px.bar(df.drop_duplicates("city"), x="city", y="temperature",
                      color="heat_index", title="Temperature by City")
